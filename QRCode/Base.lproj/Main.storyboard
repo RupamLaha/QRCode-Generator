@@ -15,12 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generate QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE3-oP-fJt">
-                                <rect key="frame" x="0.0" y="25" width="375" height="33.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type or paste link..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-v5-saF">
                                 <rect key="frame" x="16" y="88.5" width="343" height="40"/>
                                 <constraints>
@@ -101,6 +95,17 @@
                                     <action selector="saveTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ivs-rh-m7b"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0W3-KF-cSK">
+                                <rect key="frame" x="93" y="32" width="190" height="32"/>
+                                <segments>
+                                    <segment title="QR Code"/>
+                                    <segment title="Bar Code"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="SegmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="EYI-dN-ybN"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -112,16 +117,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u3D-zY-RBt" secondAttribute="trailing" constant="16" id="KUJ-Oe-H6e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GCC-kv-aaL" secondAttribute="trailing" constant="15" id="KkN-Wc-iqF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pSb-v5-saF" secondAttribute="trailing" constant="16" id="M97-lb-2s4"/>
-                            <constraint firstItem="xE3-oP-fJt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="O0R-iR-DVl"/>
+                            <constraint firstItem="0W3-KF-cSK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="NyH-3D-auI"/>
                             <constraint firstItem="ev9-x5-qac" firstAttribute="top" secondItem="GCC-kv-aaL" secondAttribute="bottom" constant="40.5" id="P61-UO-8ii"/>
-                            <constraint firstItem="xE3-oP-fJt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vz2-sV-1d7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xE3-oP-fJt" secondAttribute="trailing" id="iB8-3T-zwQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0W3-KF-cSK" secondAttribute="trailing" constant="92" id="Wzt-Xg-91a"/>
+                            <constraint firstItem="0W3-KF-cSK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="93" id="cza-9t-NAG"/>
                             <constraint firstItem="ev9-x5-qac" firstAttribute="bottom" secondItem="u3D-zY-RBt" secondAttribute="bottom" id="j44-A3-RIf"/>
                             <constraint firstItem="pSb-v5-saF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kMQ-xk-e8j"/>
-                            <constraint firstItem="pSb-v5-saF" firstAttribute="top" secondItem="xE3-oP-fJt" secondAttribute="bottom" constant="30" id="m8y-eU-W6Y"/>
                             <constraint firstItem="ev9-x5-qac" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mLC-pV-Hia"/>
                             <constraint firstItem="u3D-zY-RBt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ev9-x5-qac" secondAttribute="trailing" constant="41.5" id="pao-oO-GVB"/>
                             <constraint firstItem="GCC-kv-aaL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="r6Z-sr-TLH"/>
+                            <constraint firstItem="pSb-v5-saF" firstAttribute="top" secondItem="0W3-KF-cSK" secondAttribute="bottom" constant="25.5" id="rCH-jn-i2o"/>
                             <constraint firstItem="GCC-kv-aaL" firstAttribute="top" secondItem="xzv-82-2iH" secondAttribute="bottom" constant="25" id="t5u-uq-SQh"/>
                             <constraint firstItem="pGM-RO-dcs" firstAttribute="top" secondItem="GCC-kv-aaL" secondAttribute="bottom" constant="40.5" id="tlk-Xa-iO5"/>
                             <constraint firstItem="ev9-x5-qac" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pGM-RO-dcs" secondAttribute="trailing" constant="51.5" id="xex-2i-dm8"/>

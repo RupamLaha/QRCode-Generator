@@ -25,8 +25,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         
     }
-
+    
+    var pointer:Int = 0
+    
+    @IBAction func SegmentedControl(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            pointer = 0
+        default:
+            pointer = 1
+        }
+    }
+    
     @IBAction func generateTapped(_ sender: Any) {
+        
+        if pointer == 0 {
+        
         if textField.hasText == false{
             let alert = UIAlertController(title: "Opps!", message: "Type something to generate code", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -40,7 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         else if let qrString = textField.text {
             let data = qrString.data(using: .ascii, allowLossyConversion: false)
             let filter = CIFilter(name: "CIQRCodeGenerator")
-//            let filter = CIFilter(name: "CIPDF417BarCodeGenerator")
+//            let filter = CIFilter(name: "CICode128BarcodeGenerator")
             filter?.setValue(data, forKey: "inputMessage")
             let transform = CGAffineTransform(scaleX: 100, y: 100)
             
@@ -51,6 +65,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
             shareButton.isHidden = false
             clearButton.isHidden = false
             saveButton.isHidden = false
+        }
+
+        }
+            
+        else{
+            
+            if textField.hasText == false{
+                        let alert = UIAlertController(title: "Opps!", message: "Type something to generate code", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        present(alert, animated: true, completion: nil)
+                    }
+                    else if (textField.text?.hasPrefix(" "))! || (textField.text?.hasSuffix(" "))! {
+                        let alert = UIAlertController(title: "Opps!", message: "The prefix and suffix should not have any spaces.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        present(alert, animated: true, completion: nil)
+                    }
+                    else if let qrString = textField.text {
+                        let data = qrString.data(using: .ascii, allowLossyConversion: false)
+//                        let filter = CIFilter(name: "CIQRCodeGenerator")
+                        let filter = CIFilter(name: "CICode128BarcodeGenerator")
+                        filter?.setValue(data, forKey: "inputMessage")
+                        let transform = CGAffineTransform(scaleX: 100, y: 100)
+                        
+                        let img = UIImage(ciImage: (filter?.outputImage?.transformed(by: transform))!)
+                        
+                        qrCode.image = img
+                        
+                        shareButton.isHidden = false
+                        clearButton.isHidden = false
+                        saveButton.isHidden = false
+            }
         }
         
         textField.resignFirstResponder()
@@ -75,10 +120,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func saveTapped(_ sender: Any) {
         guard let guardImg = qrCode.image else{return}
